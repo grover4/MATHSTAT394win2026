@@ -3,7 +3,7 @@ title: "Problem Section 1"
 date:  "Onboarding"
 graphics: yes
 output: 
-    pdf_document:
+  pdf_document:
     highlight: null
     pandoc_args: ["--syntax-highlighting=tango"]
 header-includes:
