@@ -1,5 +1,5 @@
 ---
-title: "Problem Section 1"
+title: "Problem Section 1 KEY"
 date:  "Onboarding"
 graphics: yes
 output: 
@@ -11,10 +11,6 @@ header-includes:
     - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
 ---
 
-```{r setup, include=FALSE}
-#use this code chunk to set global options
-knitr::opts_chunk$set(echo = TRUE)
-```
 
 * * * 
 
@@ -36,33 +32,55 @@ The specific tasks include:
 
 
 * * *
-
 ### Exercises 
 
 1. For each of the following experiments, describe the sample space $S$.
 
 a. An arborist counts the number of insect-damaged leaves on a plant with $N$ leaves. Characterize the possible outcomes.
+    
+   $S = \{0,1,2,  \dots, N\}$ 
 	 
 b. Quality control records the proportion of defectives in a shipment of $N$ electronic components. Characterize the possible outcomes.
 	
+	 $S = \{0,\frac{1}{N},\frac{2}{N},\dots,1\}$
 
 2. Suppose a person is randomly selected from a large city. Let $A$ be the event that the randomly selected person is male, $B$ the event that the person is under 30 and $C$ that the person speaks French. Write the following verbal description of events using set operations on $A$, $B$, $C$. Venn diagrams might help you to figure out answers to this.  
 
 a. A male at least 30 years old
+    
+    $A \cap B^c$
 	
 b. A female under 30 who speaks French
+    
+    $A^c \cap B \cap C$
 	
 c. A male who is either under 30 or speaks French
+
+    $(A \cap B) \cup (A \cap C)$ or $A \cap (B \cup C)$
 
 
 3. A tourist wants to visit six of America's ten largest cities. 
 
 a. In how many ways can she do that if the order of her visits matters to her. Calculate the answer in the code chunk provided below. 
 
+
+    Here we want to know how many ways we can order a set of 6 cities from 10. By the multiplication rule, we have $10 \times 9 \times 8 \times 7 \times 6 \times 5$ or $\frac{10!}{4!}$
+    
 ```{r ex3a}
 #write code here
+factorial(10)/factorial(4)
+
 
 ```
 
+    
 b. In how many ways can she do that if the order of her visits does not matter to her. Create a small code chunk to calculate the answer. 
 
+    Here we want to know how many ways we can choose 6 cities from 10. There are $\binom{10}{6}$ combinations which is calculated below.
+
+```{r ex3b}
+
+choose(10,6)
+
+
+```
