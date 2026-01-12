@@ -1,0 +1,76 @@
+---
+title: "Homework 1"
+subtitle: "Onboarding"
+author: "WRITE YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+\onehalfspacing
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Jan 21 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. Any work submitted past this period is considered late.  
+
+- Please answer the following questions in the order in which they are posed. \textbf{Be sure to support your work and show your steps.}
+
+- Don't forget to (i) make a local copy this document for your work and to (ii) knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. \textbf{Do not forget to tag your answers to every sub-part of every question. We will take off 10\% for every part that is not tagged}
+
+- Please read the acceptable policies for this class in CANVAS. In particular, you are NOT ALLOWED to consult external sources - AI, tutors, tutoring sites, internet - to complete any part of this work. Do not use notation or definitions or results we have not covered in this class. We will deduct points for this. 
+
+
+* * *
+
+
+### Exercises 
+
+1. A graduating senior  has signed up for three job interviews. She intends to categorize each one as being
+either a “success” (s) or a “failure” (f) depending on whether it leads to a site visit.
+
+a. Write the appropriate sample space $S$.
+
+b. What outcomes are in the event $E$: second success occurs on third visit?
+
+
+2. Suppose you watch a traffic intersection for $n$ days. Let $E_i$ represent the event that there is at least one accident during day $i$. Write the following events in terms of set operations on the $E_i$ (such as unions, intersection, complements). For example $E_1 \cap E_n$ describes the event that there was at least one accident on day 1 and also on day n.
+
+a. There was at least one accident during the $n$ days.
+
+b. There was no accident during any of the $n$ days.
+
+c. There was at least one accident on each of the $n$ days.
+
+d. There was no accident on at least one of the $n$ days.
+
+
+
+3. Residents of a condominium have an automatic
+garage door opener that has a row of eight buttons. Each
+garage door has been programmed to respond to a particular set of buttons being pushed. 
+
+a. Which example from the chapter 2 slide deck is this problem most similar to?
+
+b.  If the condominium houses 250 families, can residents be assured that no two
+garage doors will open on the same signal? Yes or no and why or why not.
+
+    
+
+4. The crew of Apollo 17 consisted of two pilots and a geologist. Suppose that NASA had actually trained nine pilots and four geologists. How many possible crews could have been assembled in the following situations? 
+For each exercise, write your answer mathematically with reasoning and also calculate it inside a code chunk as you did in quiz section.
+
+
+a. There is a pilot and a co-pilot? 
+
+
+b. The two pilot positions have identical duties?
+
+   
