@@ -1,0 +1,56 @@
+---
+title: "Problem Section 2"
+date:  "The Probability Function"
+graphics: yes
+output: pdf_document
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+#use this code chunk to set global options
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* * * 
+
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+   - Use axioms to calculate probabilities and prove further corollaries.
+  
+   - Back up and support work with relevant explanations
+
+
+\end{shaded}
+
+
+* * *
+
+### Exercises 
+
+1.  Winthrop,a pre-med student, has been summarily rejected by all 126 US medical schools. Desperate, he sends his transcripts and MCATs to the two least selective foreign schools he can think of, the two branch campuses (N and E ) of Swampwater Tech. Based on the success his friends have had there, he estimates that his probability of being accepted at E is 0.7, and at N, 0.4. He also suspects there is a 75% chance that at least one of his applications will be rejected. What is the probability that at least one of the schools will accept him?
+
+
+2. (Subset inequality) Prove that if $E \subset F$, then $P(E) \leq P(F)$.   (Hint: Write $F$ as the union of two mutually exclusive sets $E$ and $F \setminus E$. )
+
+3. Suppose we roll 5 standard dice and record the number that lands on each dice. For example, the outcome (1,1,1,1,1) corresponds to observing "1" on all five dice.
+
+a. How many outcomes are in the sample space $S$?
+
+b. The event $E$ consists of all the outcomes where the numbers on  at least two dice match. How many outcomes are in $E$?
+
+c. Calculate $P(E)$, the probability of $E$.
+
+4. A store manager receives a shipment of 30 microwave ovens, 5 of which are (unknown to the manager) defective. He selects 4 ovens randomly from the shipment and tests them to see if they are defective. 
+
+a. The sample space $S$ associated with this "experiment" consists of all groupings of 4 ovens selected from the lot. How many elements are in $S$?
+
+b. The event $E$ denotes all the groupings composed of 2 defective and 2 non-defective ovens? How many elements in $E$?
+
+c. Calculate $P(E)$, the probability of $E$. (Since the manager chose randomly, all outcomes in $S$ are equally likely)
