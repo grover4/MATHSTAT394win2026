@@ -1,0 +1,135 @@
+---
+title: "Problem Section 2"
+date:  "The Probability Function"
+graphics: yes
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+#use this code chunk to set global options
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+* * * 
+
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+   - Use axioms to calculate probabilities and prove further corollaries.
+  
+   - Back up and support work with relevant explanations
+
+
+\end{shaded}
+
+
+* * *
+
+### Exercises 
+
+1.  Winthrop,a pre-med student, has been summarily rejected by all 126 US medical schools. Desperate,
+he sends his transcripts and MCATs to the two least selective foreign schools he can think
+of, the two branch campuses (N and E ) of Swampwater Tech. Based on the success his friends have had there,
+he estimates that his probability of being accepted at E is 0.7, and at
+N, 0.4. He also suspects there is a 75% chance that at least one of his applications
+will be rejected. What is the probability that at least one of the schools will accept him?
+
+    Let E = Winthrop being accepted into Eastern branch and N = Winthrop being accepted into Eastern branch.
+
+    We have that $P(E) = 0.7$, $P(N) = 0.4$, and $P(E^c \cup N^c) = .75$.
+
+    We would like to find $P(E\cup N) = P(E) + P(N) - P(E \cap N)$.
+
+    By DeMorgan's Law, $(E^c \cup N^c) = (E \cap N)^c$, thus $P(E \cap N) = 1 - P((E \cap N)^c) = 1-.75 = .25$
+
+    Thus, $P(E\cup N) = P(E) + P(N) - P(E \cap N) = .7 + .4 - .25 = .85$
+
+
+2. (Subset inequality) Prove that if $E \subset F$, then $P(E) \leq P(F)$.   (Hint: Write $F$ as the union of two mutually exclusive sets $E$ and $F \setminus E$. )
+
+    We can write $F = E \cup (F \setminus E)$.
+
+    Then we have:
+    \begin{align*}
+    P(F) &= P(E \cup (F \setminus E) ) \\
+         &= P(E) + P(F \setminus E) \tag*{axiom 3} \\
+        &\geq P(E) 
+    \end{align*}
+
+    Since we know that $P((F \setminus E)) \geq 0$, thus $P(E) \leq P(F)$
+
+3. Suppose we roll 5 standard fair dice and record the number that lands on each dice. For example, the outcome (1,1,1,1,1) corresponds to observing "1" on all five dice.
+
+a. How many outcomes are in the sample space $S$?
+
+    By the multiplication rule, there are $6^5$ possible outcomes. This is calculated below.
+    
+    ```{r ex3a}
+    num_S <- 6^5   #assign answer to a variable
+    num_S          #print its value
+    ```
+    
+    We can also print the value using inline code by typing `r num_S`. 
+    
+    
+b. The event $E$ consists of all the outcomes where the numbers on  at least two dice match. How many outcomes are in $E$?
+
+    It is easier to find the size of $E^c$ which consists of all outcomes where no two dice have the same number. This is like finding all the five digit integers with distinct digits that can be formed from the numbers 1 - 6. By the multiplication rule there are $6 \times 5 \times 4 \times 3 \times 2$ such outcomes. This is calculated below.
+    
+    ```{r ex3b}
+    num_Ec <- 6*5*4*3*2
+    num_Ec
+    ```
+    
+    Therefore the number of outcomes in $E$ is the difference num_S - num_Ec or  `r num_S - num_Ec`.
+    
+    
+    
+c. Calculate $P(E)$, the probability of $E$.
+
+    Since the dice are fair, all outcomes in the sample space are equally likely to occur. The probability of $E$ is the number of outcomes in $E$ divided by the number of outcomes in $S$.
+    
+    ```{r ex3c}
+    prob_E <- (num_S - num_Ec)/num_S 
+    prob_E
+    ```
+
+
+4. A store manager receives a shipment of 30 microwave ovens, 5 of which are (unknown to the manager) defective. He selects 4 ovens randomly from the shipment and tests them to see if they are defective.
+
+a. The sample space $S$ associated with this "experiment" consists of all groupings of 4 ovens selected from the lot. How many elements are in $S$?
+
+    There are $\binom{30}{4}$ outcomes in the sample space $S$.
+    
+    ```{r ex4a}
+    num_S <- choose(30,4)
+    num_S
+    
+    ```
+
+b. The event $E$ denotes all the groupings composed of 2 defective and 2 non-defective ovens? How many elements in $E$?
+
+    By the multiplication rule, there are $\binom{25}{2}$ ways to select 2 non-defective ovens and $\binom{5}{2}$ ways to select 2 defective ovens. Therefore the number of elements in $E$ is $\binom{25}{2} \times \binom{5}{2}$.
+    
+    ```{r ex4b}
+    num_E <- choose(25,2)*choose(5,2)
+    num_E
+    
+    ```
+
+c. Calculate $P(E)$, the probability of $E$. (Since the manager chose randomly, all outcomes in $S$ are equally likely)
+
+    ```{r ex4c}
+    prob_E <- num_E/num_S
+    prob_E
+    ```
