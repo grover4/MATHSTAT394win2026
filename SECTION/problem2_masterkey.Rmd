@@ -72,7 +72,7 @@ will be rejected. What is the probability that at least one of the schools will 
 
 a. How many outcomes are in the sample space $S$?
 
-    By the multiplication rule, there are $6^5$ possible outcomes. This is calculated below.
+    By the multiplication rule, there are $6^5$ possible outcomes. This is calculated as shown below.
     
     ```{r ex3a}
     num_S <- 6^5   #assign answer to a variable
