@@ -1,0 +1,111 @@
+---
+title: "Homework 2"
+subtitle: "The Probability Function"
+author: "WRITE YOUR NAME HERE"
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+\onehalfspacing
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(tidyverse)  #R package 
+```
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Jan 28 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. Any work submitted past this period is considered late.  
+
+- Please answer the following questions in the order in which they are posed. \textbf{Be sure to support your work and show your steps. All calculations must be done within your document and shown with the answer printed.}
+
+- Don't forget to (i) make a local copy this document for your work and to (ii) knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. \textbf{Do not forget to tag your answers to every sub-part of every question. We will take off 10\% for every part that is not tagged}
+
+- \textbf{Please read the acceptable policies for this class in CANVAS. In particular, you are NOT ALLOWED to consult external sources - AI, tutors, tutoring sites, internet - to complete any part of this work. Do not use notation or definitions or results we have not covered in this class. We will deduct points for this. }
+
+* * *
+
+
+### Exercises 
+
+<!--- This is a hint for Problem 1 part b. It won't show up in your PDF. You can delete it after reading if you wish.
+
+Write $E = E_4  \cup E_5 \cup E_6$ where $E_4$ denotes the event there are 4 heads, etc. Figure out how many elements there are in $E_4$, $E_5$ and $E_6$.
+--->
+
+1. (Heads or Tails) Suppose 6 \emph{fair} coins are tossed and the outcome (head or tail) is recorded for each.  
+   
+a. The sample space $S$ corresponding to this "experiment" consists of all possible sequences of heads and tails that result from tossing 6 coins. How many elements are in $S$? Calculate the answer in a code chunk, save it to a variable called `num_S` and then print the value.  
+   
+b. Let $E$ denote the event that there are more heads than tails. How many elements are in $E$? Calculate this number in a code chunk, save your answer in a variable called `num_E` and print the value.  
+
+   
+c. What is $P(E)$? Calculate it in a code chunk and save it to variable called `prob_E` and print the value. Be sure to cite any rules you are using to make your theoretical probability calculation. 
+   
+
+<!--- This is a hint for Problem 2 part e. It won't show up in your PDF. You can delete it after reading if you wish.
+
+Think in terms of the fraction of the population which is tagged and the fraction of the observed sample which is tagged to understand the pattern.
+--->
+
+
+2. (Tagging goldfish) To estimate the number $N$ of goldfish in a pond, $r = 25$ fish were caught, tagged and released. Later, a second sample of $n = 20$ fish were caught and 5 fish in this sample were noted to be tagged.  
+ 
+a.  How many possible samples of size $n = 20$ can be formed from the $N$ fish in the pond?  Leave your answer in terms of a binomial coefficient since you cannot calculate it because you don't know $N$. 
+    
+b. The event $E$ contains all the samples which have 5 tagged and 15 untagged fish. How many elements are in the event $E$? Leave your answer in terms of $N$. 
+   
+c. Assuming each possible sample is equally likely, give an expression for $P(E)$. (Leave your answer in terms of $N$)
+
+d.  In this part, we will examine visually how $P(E)$ varies as a function of $N$.  Fill in the blanks in the R code provided and run it in R to create the plot. **You should remove the `eval = FALSE` chunk option after filling in the blanks.**
+
+
+    ```{r fish, eval=FALSE}
+
+    fishes <- tibble( #enhanced data frame
+              N = 40:200,    #possible values for N: 40,41, ...,200
+              prob = ___ ) ) #P(E) in terms of N
+
+    ggplot(data = fishes, 
+           mapping = aes(x = ___,    
+                         y = ___) ) +
+           geom_line() +
+             labs( title = " ___" ,
+                  x = "___", 
+                  y = "___")
+    ```
+
+
+e. If all went well, your graph should be unimodal with a peak at $N=100$. Just conceptually, explain what this pattern tells us about $P(E)$ and why it makes sense. Be sure to demonstrate your understanding of the location of the peak, as well as the increasing pattern before the peak and decreasing pattern after.
+
+<!--- 
+This is a hint for writing up your work for Problem 3. It won't show up in your PDF. You can delete it after reading if you wish.
+
+Take a look at my explanations for Example 3.1 in the slide deck for chapter 3. We will deduct credit if you do not justify your work or show steps in a similar manner. 
+--->
+
+3. (Just acting) An actress playing the lead role in a film has a stunt double. According to the script, the actress appears in 40% of the film’s scenes, her double appears in 30%, and the two of them are together 5% of the time. Let $L$ denote the event that the lead is in a scene and $D$ denotes that the double is in a scene. Write each of the following in terms of $L$ and $D$ and then find the probability that it occurs.
+
+a. only the stunt double appears in a scene? 
+   
+b. neither the lead actress nor the double appears in a scene? 
+
+
+<!--- 
+This is a hint for writing up your work for Problem 4. It won't show up in your PDF. You can delete it after reading if you wish.
+
+Refer to Bonferroni's equality from Chapter 3 slide deck and also the subset inequality from problem section 2. You will need them.
+--->
+
+4.  (Bounds) For two events $A$ and $B$ with $P(A)=0.5$ and $P(B)=0.8$, what are the largest and smallest possible values for $P(A \cap B)$? Be sure to show your work and explain the steps. 
+
+
+
