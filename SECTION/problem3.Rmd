@@ -1,0 +1,82 @@
+---
+title: "Problem Section 3"
+subtitle:  "Conditional Probability & Independence"
+graphics: yes
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+#use this code chunk to set global options
+knitr::opts_chunk$set(echo = TRUE)
+
+###attach R packages which may be needed
+library(openintro)    #contains R function for drawing probability tree
+
+```
+
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+   - Calculate conditional probabilities
+   
+   - Apply Bayes' rule
+   
+   - Calculate probabilities for independent events
+  
+   - Back up and support work with relevant explanations
+
+
+\end{shaded}
+
+* * *
+
+### Exercises 
+
+1. Suppose a card is drawn randomly from a 52 card standard deck consisting of 13 cards (in denominations from 2 to 10, Jack, King, Queen, Ace) from each of four suits ($\heartsuit$, $\diamondsuit$, $\clubsuit$, $\spadesuit$). 
+
+a. Find the probability that the card is a club, given that the card is a King.
+
+b. Are the events independent? Why or why not?
+
+2. One common application of conditional probabilities is in calculating inverse probabilities. For example, consider the following tree diagram of probabilities relating a screening test for a disease with the actual presence of disease. The first (primary) branch of the tree gives \emph{unconditional} probabilities of disease being present or absent, while the secondary branches state conditional probabilities of the test coming out positive (or negative) given the disease status.
+
+
+    ```{r treediagram}
+
+    treeDiag(main = c("Disease status", "Test result"),
+         p1 = c(0.001, 0.999),
+         p2 = list(c(0.98, "?"), c(0.01, "?")),
+         out1 = c("Present", "Absent"),
+         out2 = c("Positive", "Negative"),
+         showSol = FALSE,
+         showWork = FALSE,
+         solwd = 0.5,
+         digits = 6)
+
+    ```
+
+a. Fill in the values in the tree diagram indicated by a "?". 
+
+b. Suppose the test is positive. What is the probability that the person actually has disease? 
+
+3. A weather satellite is sending a binary code of 0s or 1s describing a developing tropical storm. Channel noise introduces a certain amount of transmission errors. Suppose that 70% of the message being relayed is 0s, and there is an 80% chance of a given 0 or 1 being received properly. If a 1 is received, what is the probability that a 0 was sent?
+
+   Make a probability tree and find the desired probability.
+   
+4. Suppose that string of tree lights you just bought has twenty-four bulbs
+wired in series. If each bulb has a 99.9% chance of “working” when the current
+is applied, what is the probability that the string itself will not work? You may assume that bulb failures are independent. 
+
+    In addition to writing up your steps, create a new code chunk below and do your calculations there. Be sure to print the result.
