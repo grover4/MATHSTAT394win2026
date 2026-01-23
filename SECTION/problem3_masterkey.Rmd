@@ -1,0 +1,144 @@
+---
+title: "Problem Section 3 Key"
+subtitle:  "Conditional Probability & Independence"
+graphics: yes
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+###this is a code chunk. you can write code here
+
+###setting global option to echo all code chunks, unless
+###otherwise specified in chunk options
+knitr::opts_chunk$set(echo = TRUE)
+
+###attach R packages which may be needed
+library(openintro)    #contains R function for drawing probability tree
+```
+
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+   - Calculate conditional probabilities
+   
+   - Apply Bayes' rule
+   
+   - Calculate probabilities for independent events
+  
+   - Back up and support work with relevant explanations
+
+
+\end{shaded}
+
+* * *
+
+
+### Exercises 
+
+1. Suppose a card is drawn randomly from a 52 card standard deck consisting of 13 cards (in denominations from 2 to 10, Jack, King, Queen, Ace) from each of four suits ($\heartsuit$, $\diamondsuit$, $\clubsuit$, $\spadesuit$). 
+
+a. Find the probability that the card is a club, given that the card is a King.  
+
+    Intuitively, the answer is $\frac{1}{4}$. The King is equally likely to be a heart, diamond, club, or spade. 
+    
+    But let's do this problem more formally even though it is not needed. Let C be the event **Card is a club**; let K be the event **Card is a King**. By definition
+    \begin{align*}
+    P(C|K) &= \frac{P(C \cap K)}{P(K)} \\
+           &= \frac{P(K|C) \times P(C)}{P(K)} \tag*{chain rule}\\
+           &= \frac{\frac{1}{13} \times \frac{13}{52}}{\frac{4}{52}} \\
+           &= \frac{1}{4}
+    \end{align*}
+
+b. Are the events independent? Why or why not?
+
+    They are independent because the probability of seeing a club is unaffected by whether or not we know the card is club. In other words:
+    $$P(C|K) = \frac{1}{4} = P(C)$$
+
+2. One useful application of conditional probabilities is in calculating inverse probabilities. For example, consider the following tree diagram of probabilities relating a screening test for a disease with the actual presence of disease. The first (primary) branch of the tree gives \emph{unconditional} probabilities of disease being present or absent, while the secondary branches state conditional probabilities of the test coming out positive (or negative) given the disease status. Suppose the test is positive. What is the probability that the person actually has disease? 
+   
+
+    ```{r screening_tree}
+
+    treeDiag(main = c("Disease status", "Test result"),
+         p1 = c(0.001, 0.999),
+         p2 = list(c(0.98, 0.02), c(0.01, 0.99)),
+         out1 = c("Present", "Absent"),
+         out2 = c("Positive", "Negative"),
+         showSol = FALSE,
+         showWork = FALSE,
+         solwd = 0.5,
+         digits = 6)
+
+    ```
+  
+a. Fill in the values in the tree diagram indicated by a "?". Then remove the `eval = FALSE` option for the code chunk.  
+
+
+b. Suppose the test is positive. What is the probability that the person actually has disease? 
+
+    Let $D_1$ denote that a randomly selected individual has the disease, and $D_2$ denote the event that they are healthy. Further suppose $T$ is the event that the screening test is positive. We want to find $P(D_1|T)$.
+
+   By Bayes' Rule we have
+   
+   $$P(D_1|T) = \frac{ P(T|D_1) \times P(D_1)}{P(T|D_1) \times P(D_1) + P(T|D_2)\times P(D_2)}$$
+
+    The calculations are shown below.
+   
+    ```{r calc_inv_prob}
+    Prob_T_given_D1 <- .98    #given: P(T|D)
+    Prob_D1 <- 0.001          #law of complements
+    Prob_T_given_D2 <- 0.01  #given:P P(T|D^c)
+    Prob_D2 <- 1 - Prob_D1    #law of complements
+
+    #use chain rule to find intersection probabilities
+    Prob_D1_and_T <-  Prob_T_given_D1* Prob_D1 
+    Prob_D2_and_T <- Prob_T_given_D2*Prob_D2
+
+    #find P(T) by adding intersection probabilities 
+    Prob_T <- Prob_D1_and_T + Prob_D2_and_T
+
+    #calculate inverse conditional probability by Bayes' Rule
+    # P(D|T) = P(T|D) P(D)/P(T)
+    Prob_D1_given_T <- (Prob_T_given_D1 * Prob_D1)/Prob_T 
+    Prob_D1_given_T
+    ```
+  
+     
+
+3. A weather satellite is sending a binary code of 0s or 1s describing a developing tropical storm. Channel noise introduces a certain amount of transmission errors. Suppose that 70% of the message being relayed is 0s, and there is an 80% chance of a given 0 or 1 being received properly. If a 1 is received, what is the probability that a 0 was sent?
+
+   Make a probability tree and find the desired probability.
+   
+ 
+   
+4. Suppose that string of tree lights you just bought has twenty-four bulbs wired in series. If each bulb has a 99.9% chance of “working” when the current is applied, what is the probability that the string itself will not work? You may assume that bulb failures are independent.
+
+    We must find the probability of at least one bulb failing, since this will cause the series to fail. We can find this using complements.
+
+    Let $A_i$ be the event that bulb i works.
+
+    Let $B$ be the event that the string of lights works (no bulb failures), i.e. $B = A_1 \cap A_2 \cap \dots \cap A_{24}$
+
+    By independence of the $A_i's$ we have that $P(B) = P(A_1 \cap A_2 \cap \dots \cap A_{24}) = \prod_{i=1}^{24}P(A_i) = .999^{24}$
+
+    The probability the string does work is thus $0.999^{24}$, so the probability the string will not work is simply one minus this probability.
+    
+    ```{r prob_string_lights}
+    1 - 0.999^{24}
+    
+    ```
+
+
+
