@@ -1,0 +1,288 @@
+---
+title: "Homework 3"
+subtitle: "MATH/STAT 394"
+author: "WRITE YOUR NAME HERE"
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+\onehalfspacing
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#R packages
+library(tidyverse)  
+library(ggforce)       #for the electrical circuit diagram
+```
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Feb 4 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. Any work submitted past this period is considered late.  
+
+- Please answer the following questions in the order in which they are posed. \textbf{Be sure to support your work and show your steps. All calculations must be done within your document and shown with the answer printed}
+
+- Don't forget to (i) make a local copy this document for your work and to (ii) knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. \textbf{Do not forget to tag your answers to every sub-part of every question. We will take off 10\% for every part that is not tagged}
+
+- \textbf{Please read the acceptable policies for this class in CANVAS. In particular, you are NOT ALLOWED to consult external sources - AI, tutors, tutoring sites, internet - to complete any part of this work. Do not use notation or definitions or results we have not covered in this class. We will deduct points for this. }
+
+* * *
+
+
+### Exercises 
+
+<!--- Notes for Problem 1: Define events $B_1$: "B works", $B_2$: "B fails" and $E$ is the event that "E works". Clearly state what we are given, what you are trying to find and show your steps and support your answer. See example 4.5  to develop ideas for how to write up your steps.  --->
+
+1. (Electricity) Refer to the electrical circuit flow diagram shown below. It is known overall that relay B works with probability 0.6 and relay E with probability 0.54. However, given that B fails, E will fail with probability 0.7. 
+    
+
+    ```{r ref.label="flow-diag", echo = FALSE, fig.align = "center", out.width= "50%"}
+      #please knit the document to see the figure
+    ```
+
+    
+    Find the probability E works given that B works. Clearly state any laws you make use of and show your steps. All calculations must be done within your document and shown with answers printed for variables.
+    
+    
+
+
+2. (Spamalot) Larry divides his email into two categories: $A_1=\mbox{spam}$,
+$A_2=\mbox{not spam}$. From previous experience he has found that $P(A_1) = 0.7$, $P(A_2)=0.3$. Let $B$ be the event that the email contains the word ``free''. From previous experience, $P(B|A_1)=0.9$, $P(B|A_2)=0.02$. 
+ 
+
+<!--- Notes for Problem 2a: Be sure to only attach the package in the setup code chunk at the top of the document. We will deduct points if this is not followed, or your code does not show fully. Practice typing out the code, not just copying and pasting. Also, feel free to resize the picture and center it. --->
+
+a. Make a probability tree using the `treeDiag` function from the package **openintro**. 
+
+
+<!--- Notes for Problem 2b: Please look up Example 4.7 or Problem 2 from the section on Conditional Probability for ideas on how to write up your work. --->
+
+b. Suppose Larry receives an email with the word "free". What is the probability that it is spam? Clearly show your work mathematically and support steps. The tree should only help you verify your answers. All calculations must be done within your document and shown with the answer printed.
+
+
+<!--- Notes for Problem 3: This is similar to Example 4.1 (revisited) at the end of the Chapter 4 slide deck, except you will need to use counting rules to get probabilities since the sets are too large to enumerate --->
+
+3. (Face off) Suppose three cards are drawn randomly without replacement from a shuffled 52-card deck.  The face cards are the 4 Jacks, 4 Queens and 4 Kings.  Let $A=\{
+\mbox{all diamonds} \}$ and $B=\{\mbox{all face cards}\}$.  Are the
+events $A$ and $B$ independent? Show your work mathematically and with support. Any calculations must be done within your document and shown with the answer printed.
+
+
+<!--- Notes for Problem 4: The key is to write the event corresponding to the budget passing. The trickiest part is the upper part of the circuit: we need one of these to happen: [(B or D) and E ]. Please convert this to set operations on your own. The hint here is all we are willing to say about this.
+
+Also see Example 4.9 and your CANVAS quiz for this chapter if you need more help.
+
+--->
+
+4. (Red tape) Protocol for making financial decisions in a large organization follows the circuit diagram in Problem 1. Any budget is first screened by A. If she approves it, the plan is forwarded to B, D, and C. If one of B or D approves, it goes to E. If both E and C says “yes,” it moves on to F for a final reading and passes if they approve it. Suppose that A, C and F each have a chance of 50% of approving whereas $B$, $D$ and $E$ each have a 70% chance of approving the budget. If everyone comes to a decision independently, what is the probability that the budget will pass?
+
+ 
+
+
+<!--- 
+## Appendix
+
+The code for the circuit diagram for problem 1 is below.
+--->
+
+```{r label = "flow-diag", echo = FALSE, eval = FALSE}
+
+# Helper: draw circular nodes
+node <- function(x, y, r = 0.22, label = "", ...) {
+  list(
+    ggforce::geom_circle(aes(x0 = x, y0 = y, r = r),
+                         inherit.aes = FALSE, linewidth = 0.6, fill = "white"),
+    annotate("text", x = x, y = y, label = label, size = 4.2, fontface = "bold", ...)
+  )
+}
+
+# Base plot setup
+p <- ggplot() +
+  coord_equal(xlim = c(-0.5, 10), ylim = c(1, 8), expand = FALSE) +
+  theme_void()
+
+# Main rectangle: A -> C -> E -> F outer path
+p <- p +
+  geom_segment(aes(x = 1, y = 2, xend = 1, yend = 6), linewidth = 0.8) +  # left side
+  geom_segment(aes(x = 1, y = 2, xend = 8, yend = 2), linewidth = 0.8) +  # bottom
+  geom_segment(aes(x = 8, y = 2, xend = 8, yend = 6), linewidth = 0.8) +  # right side
+  geom_segment(aes(x = 1, y = 6, xend = 8, yend = 6), linewidth = 0.8)    # top
+
+# Upper loop between B and D (parallel branch)
+loop_x1 <- 2; loop_x2 <- 4; loop_y <- 6; loop_h <- 1.2
+p <- p +
+  geom_segment(aes(x = loop_x1, y = loop_y, xend = loop_x1, yend = loop_y + loop_h), linewidth = 0.8) +  # left vertical of loop
+  geom_segment(aes(x = loop_x1, y = loop_y + loop_h, xend = loop_x2, yend = loop_y + loop_h), linewidth = 0.8) +  # top path (B)
+  geom_segment(aes(x = loop_x2, y = loop_y + loop_h, xend = loop_x2, yend = loop_y), linewidth = 0.8) +  # right vertical back down
+  geom_segment(aes(x = loop_x1, y = loop_y, xend = loop_x2, yend = loop_y), linewidth = 0.8)             # bottom of loop (D)
+
+# Input/output arrows
+p <- p +
+  geom_segment(aes(x = -0.2, y = 4, xend = 1, yend = 4),
+               linewidth = 0.8, arrow = arrow(length = unit(6, "pt"), type = "closed")) +
+  geom_segment(aes(x = 8, y = 4, xend = 9.3, yend = 4),
+               linewidth = 0.8, arrow = arrow(length = unit(6, "pt"), type = "closed"))
+
+# Node positions
+p <- p +
+  node(0.35, 4, label = "A") +        # A (input)
+  node(3, loop_y + loop_h, label = "B") +  # B (top of loop)
+  node(3, loop_y, label = "D") +           # D (bottom of loop)
+  node(6.2, 6, label = "E") +         # E (top right)
+  node(4.5, 2, label = "C") +         # C (bottom branch)
+  node(8.8, 4, label = "F")           # F (output)
+
+p
+
+```
+
+
+
+<!--- Code for problem 4: budget diagram --->
+
+
+```{r label = "budget-diag", echo = F, eval = F}
+
+
+# Layout parameters
+top_y      <-  2.0
+bottom_y   <- -3.0
+left_rail  <- 1.5
+right_rail <- 6.5
+
+# Attach points on top rail
+attach_left_x  <- left_rail + 0.4
+attach_right_x <- right_rail - 0.4
+mid_x <- (attach_left_x + attach_right_x)/2
+
+# B node vertical positions
+B1_y <- top_y + 1.1
+B2_y <- top_y - 0.3
+
+# Nodes (LETTERS ONLY)
+nodes <- data.frame(
+  label = c("A","B1","B2","C","D","E"),
+  x = c(
+    left_rail - 0.8,           # A
+    mid_x,                     # B1
+    mid_x,                     # B2
+    attach_right_x + 0.6,      # C
+    (left_rail + right_rail)/2,# D
+    right_rail + 1.3           # E
+  ),
+  y = c(
+    (top_y + bottom_y)/2,
+    B1_y,
+    B2_y,
+    top_y,
+    bottom_y,
+    (top_y + bottom_y)/2
+  ),
+  stringsAsFactors = FALSE
+)
+
+r <- 0.28
+
+# C outgoing segment and new right corner
+C_out_xend <- nodes$x[nodes$label=="C"] + 0.4
+C_out <- data.frame(
+  x    = nodes$x[nodes$label=="C"] + r,
+  xend = C_out_xend,
+  y    = top_y,
+  yend = top_y
+)
+
+# Rails (right rail moved to end of C_out)
+rail_segments <- data.frame(
+  x    = c(left_rail, left_rail, C_out_xend),
+  xend = c(left_rail, C_out_xend, C_out_xend),
+  y    = c(top_y, bottom_y, bottom_y),
+  yend = c(bottom_y, bottom_y, top_y)
+)
+
+# Top connectors
+top_connectors <- data.frame(
+  x    = c(left_rail, C_out_xend),
+  xend = c(attach_left_x, attach_right_x),
+  y    = c(top_y, top_y),
+  yend = c(top_y, top_y)
+)
+
+# Parallel B branches
+B_upper <- data.frame(x=attach_left_x, xend=attach_right_x, y=B1_y, yend=B1_y)
+B_lower <- data.frame(x=attach_left_x, xend=attach_right_x, y=B2_y, yend=B2_y)
+
+# Vertical stubs at attach points
+left_stub_u  <- data.frame(x=attach_left_x, xend=attach_left_x, y=top_y, yend=B1_y)
+left_stub_l  <- data.frame(x=attach_left_x, xend=attach_left_x, y=top_y, yend=B2_y)
+right_stub_u <- data.frame(x=attach_right_x, xend=attach_right_x, y=top_y, yend=B1_y)
+right_stub_l <- data.frame(x=attach_right_x, xend=attach_right_x, y=top_y, yend=B2_y)
+
+# A and E connectors
+A_conn <- data.frame(
+  x = nodes$x[nodes$label=="A"] + r,
+  xend = left_rail,
+  y = nodes$y[nodes$label=="A"],
+  yend = nodes$y[nodes$label=="A"]
+)
+
+E_conn <- data.frame(
+  x = nodes$x[nodes$label=="E"] - r,
+  xend = C_out_xend,
+  y = nodes$y[nodes$label=="E"],
+  yend = nodes$y[nodes$label=="E"]
+)
+
+# Arrows
+arrow_in  <- data.frame(x=-0.8, xend=nodes$x[nodes$label=="A"]-r, y=nodes$y[1], yend=nodes$y[1])
+arrow_out <- data.frame(x=nodes$x[nodes$label=="E"]+r, xend=C_out_xend+1.4, y=nodes$y[6], yend=nodes$y[6])
+
+# ---- Plot ----
+p <- ggplot() +
+  geom_segment(data=rail_segments, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=top_connectors, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+
+  geom_segment(data=B_upper, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=B_lower, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+
+  geom_segment(data=left_stub_u,  aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=left_stub_l,  aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=right_stub_u, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=right_stub_l, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+
+  geom_segment(data=A_conn, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=E_conn, aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+  geom_segment(data=C_out,  aes(x=x,y=y,xend=xend,yend=yend), linewidth=0.9) +
+
+  geom_segment(data=arrow_in,  aes(x=x,y=y,xend=xend,yend=yend),
+               arrow=grid::arrow(length=grid::unit(6,"pt")), linewidth=0.9) +
+  geom_segment(data=arrow_out, aes(x=x,y=y,xend=xend,yend=yend),
+               arrow=grid::arrow(length=grid::unit(6,"pt")), linewidth=0.9) +
+
+  geom_circle(data=nodes, aes(x0=x,y0=y,r=r), inherit.aes=FALSE, linewidth=0.6) +
+
+  # nudged labels: raise B1, B2, C, D by +0.15 so they're not crossed by horizontal lines
+  geom_text(
+    data = nodes,
+    aes(
+      x = x,
+      y = y + ifelse(label %in% c("B1","B2","C","D"), 0.15, 0),
+      label = label
+    ),
+    size = 4
+  ) +
+
+  coord_fixed(xlim=c(-1.5, C_out_xend+1.6), ylim=c(-4,4), expand=FALSE) +
+  theme_void()
+
+print(p)
+
+
+
+```
