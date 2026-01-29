@@ -1,0 +1,107 @@
+---
+title: "Problem Section 4"
+subtitle:  "Discrete Distributions"
+graphics: yes
+output: 
+    pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+#use this code chunk to set global options
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+    - Identifying the range of discrete and continuous random variables
+   
+   - Deriving the PMF and CDF of a discrete random variable
+   
+   - Recognizing properties of CDFs
+   
+   - Back up and support work with relevant explanations
+   
+
+\end{shaded}
+
+* * *
+
+### Exercises 
+
+1. For each situation, give the range of the random variable $X$. Then state whether the random variable is discrete or continuous.
+
+a. $X$ is the number of employees among 12 recently hired that will still be with the company in another year.
+		
+b. In a busy 24 hour copy center, minor malfunctions of the copy machine occur randomly. $X$ denotes the time (in hours) until the first minor malfunction occurs.
+	 
+	 
+2. Suppose you toss a fair coin 3 times. The sample space for this experiment is shown below:
+$$S = \{ HHH, HHT, HTH, HTT, TTT,TTH, THT, THH \}.$$
+
+a. Let $X$ denote the difference between number of heads and number of tails. Write the PMF of $X$ in a tabular format.   
+
+b. Draw the probability histogram of $X$ in R. Comment on the appearance of the distribution such as shape, modality.
+
+
+3. Which of the following is a valid CDF? (choose one; also point out what's wrong with the ones you didn't choose)
+
+Hint: make a sketch 
+
+a. 
+\begin{align*} 
+        F(x) &= \left\{ \begin{array}{cc} 
+                 0 & x < 0\\
+                 \frac{1}{4} & 0 \leq x \leq 3 \\
+                 \frac{3}{4} & 3 <  x < 5 \\
+                 1 & 5 \leq x \end{array} \right. \end{align*}
+
+b.
+\begin{align*} 
+        F(x) &= \left\{ \begin{array}{cc} 
+                 0 & x < 0\\
+                 \frac{1}{4} & 0 \leq x < 3 \\ 
+                 \frac{3}{4} & 3 \leq x < 5 \\ 
+                 1 & 5 \leq x \end{array} \right. \end{align*}
+
+c. 
+\begin{align*} 
+      F(x) &= \left\{ \begin{array}{cc} 
+                 0 & x < 0\\
+                 \frac{3}{4} & 0 \leq x < 3 \\ 
+                 \frac{1}{4} & 3 \leq x < 5 \\ 
+                 1 & 5 \leq x \end{array} \right. \end{align*}
+   
+
+d.
+\begin{align*} 
+       F(x) &= \left\{ \begin{array}{cc} 
+                 0 & x < 0\\
+                 \frac{1}{4} & 0 \leq x < 3 \\ 
+                 \frac{3}{4} & 3 \leq x < 5 \\ 
+                 \frac{7}{8} & 5 \leq x \end{array}   
+                 \right.                      
+\end{align*}              
+
+4. Write the PMF for the CDF that you identified as valid in problem 3. Also calculate the following probabilities using the CDF and also verify using the PMF.   
+
+a. $P(X > 2)$
+
+b. $P(0.5 < X < 3.5)$
+
+
+
+
