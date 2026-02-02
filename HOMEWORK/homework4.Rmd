@@ -57,7 +57,7 @@ a. (Shelley) Suppose a word is randomly selected from the following lines of She
 
 b. (Hampton Inns) In the service industry it has been found that 5% of the customers who experience problems complain to the management, 45% of the customers who experience problems complain to front-line personnel, while the remaining 50% of customers who experience problems do not complain. Suppose that the management of Hampton Inns believes that their percentages are the same as the figures given above. Consider the next 10 customers who experience problems at Hampton Inns. What is the chance that at least two complaints are received?
 
-    Be sure to state any assumptions you make to do your calculations and justify your steps.
+    Be sure to state any assumptions you make to do your calculations and justify your steps. Also calculate the probability in a code chunk and print out the answer.
   
  
 2. (Random walk) Suppose a particle moves 4 steps along the x-axis, starting at 0. At each step, it moves randomly one unit to the right or to the left. 
