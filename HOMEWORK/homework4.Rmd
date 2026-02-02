@@ -1,0 +1,130 @@
+---
+title: "Homework 4"
+subtitle: "Discrete Random Variables"
+author: "WRITE YOUR NAME HERE"
+output: 
+  pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+\onehalfspacing
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#R packages
+library(tidyverse)  
+
+```
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Feb 11 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. Any work submitted past this period is considered late.  
+
+- Please answer the following questions in the order in which they are posed. \textbf{Be sure to support your work and show your steps. All calculations must be done within your document and shown with the answer printed}
+
+- Don't forget to (i) make a local copy this document for your work and to (ii) knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. \textbf{Do not forget to tag your answers to every sub-part of every question. We will take off 10\% for every part that is not tagged}
+
+- \textbf{Please read the acceptable policies for this class in CANVAS. In particular, you are NOT ALLOWED to consult external sources - AI, tutors, tutoring sites, internet - to complete any part of this work. Do not use notation or definitions or results we have not covered in this class. We will deduct points for this. }
+
+* * *
+
+
+### Exercises 
+
+1. 
+
+a. (Shelley) Suppose a word is randomly selected from the following lines of Shelley's poem *Ozymandias*
+
+   ```{verbatim}
+   "My name is Ozymandias, king of kings:
+    Look on my works, ye Mighty, and despair!"
+    Nothing beside remains. Round the decay
+    Of that colossal wreck, boundless and bare
+    The lone and level sands stretch far away 
+   ```
+
+   Let the random variable $X$ denote the length of the word. What is $P(X = 5)$? Be sure to justify your answer.
+  
+
+<!--- Hint for 1b: First define the random variable $X$ as the number of complaints received from 10. State the probability you are trying to calculate in terms of values of $X$. Then find the probability with clearly stated justifications for your work.  --->
+
+b. (Hampton Inns) In the service industry it has been found that 5% of the customers who experience problems complain to the management, 45% of the customers who experience problems complain to front-line personnel, while the remaining 50% of customers who experience problems do not complain. Suppose that the management of Hampton Inns believes that their percentages are the same as the figures given above. Consider the next 10 customers who experience problems at Hampton Inns. What is the chance that at least two complaints are received?
+
+  
+ 
+2. (Random walk) Suppose a particle moves 4 steps along the x-axis, starting at 0. At each step, it moves randomly one unit to the right or to the left. 
+
+<!--- Comment for 2a:  No hints will be given for this. The problem with ChatGPT's answer is literally ONE WORD. Please find it on your own --->
+
+a. If you copy and paste the following question into ChatGPT: \emph{How many elements are in the sample space? Explain your answer very briefly }, you will get the answer shown in the file `HW4problem2-chatgpt.pdf` which is located in the COURSEMATERIALS/HOMEWORK folder. The number of elements is correctly calculated, however, there is an error made in the explanation for why. In your own words, describe the error and how you would fix it.
+   
+   
+b. Let $E$ denote the event that the particle ends up at $x = 0$. Write the outcomes in $E$ and calculate $P(E)$. 
+
+c. Now suppose the random variable $X$ denotes the position of the particle after 4 steps. Write its PMF in a tabular format. I have created a partial table for you to fill in. Each row should contain a possible value $x$, then list the outcomes from the original sample space that give that possible value and the probability. (*Hint: in part b you calculated $P(X = 0)$.*)
+
+\begin{table}[h]
+\centering
+\caption{PMF of $X$: position of particle after 4 steps}
+\begin{tabular}{|c|p{4in}|r|} \hline
+$x$ &  outcomes from $S$ & $f(x)$ \\ \hline 
+\end{tabular}
+\end{table}
+
+<!--- Hint for 2d: Please see the chapter 5 slide 26 for sample code for a probability histogram. 
+
+For creating the variabes x and f in your dataframe, you can use
+df <- tibble(
+      x <- c(value1, value2, value3, value4),
+      f <- c(prob1, prob2, prob3, prob4) 
+      )
+for example. The "c" stands for concatenate and creates a vector with the numbers that are inputted.
+
+Be sure to give labels and a title. Do not use any code that you have not been taught in this class. --->
+
+d. Create a code chunk and write code to draw the probability histogram of $X$, the position of the particle after 4 steps. 
+
+3. (Random walk revisited)
+
+a. How would the PMF change in problem 2c change if the particle was twice as likely to move to the right as it is to the left? That is, the outcomes are no longer equally likely. Create a table showing the new PMF. Also clearly state any assumption you now need to make in order to re-calculate the probabilities. 
+
+b. Draw the probability histogram of $X$, the position of the particle after 4 steps in this scenario. 
+
+
+4. (Discrete Uniform) Suppose $X$ is a discrete uniform random variable on the integers $1, 2,\dots, n$, that is, it has PMF
+
+    $$f(x) = P(X = x) = k, \ \ \ x = 1,2,\dots,n$$
+
+    where $k$ is some unknown number. 
+
+a. Find $k$.
+
+b. Using  value of $k$ you found in part a, complete the  equation below to show the CDF  $F(x)$. Delete each blank and fill in the value of $F(x)$ for the corresponding interval. 
+
+
+    \begin{align*}
+     F(x) &= \left\{ \begin{array}{ll}
+                \underline{\hspace{2cm}}, & x < 1 \\[6pt]
+                \underline{\hspace{2cm}}, & 1 \le x < 2 \\[6pt]
+                \underline{\hspace{2cm}}, & 2 \le x < 3 \\[6pt]
+                \vdots & \vdots \\[6pt]
+                \underline{\hspace{2cm}}, & (n-1) \le x < n \\[6pt]
+                \underline{\hspace{2cm}}, & x \ge n
+                \end{array} \right.
+    \end{align*}
+
+c. Find $P(2.5 < X \leq (n-1)+\frac{1}{2})$. Show your steps using the CDF $F(x)$ rather than summing the PMF.
+
+<!--- Hint for 4d: First state the possible values of $Y$. Then take one value as an example, say $\frac{1}{2}$ and find $P(Y = 1/2)$ by noting that the event $Y = 1/2 <=> X = 2$. This should help you find the probability for $ Y = 1/2$. Then generalize to arbitrary value $y$.
+
+
+d. Define the random variable $Y = \frac{1}{X}$. Derive the PMF of $Y$. Be sure to back up your work.
+
+    Hint: What values does $Y$ take? With what probabilities?
