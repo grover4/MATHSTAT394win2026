@@ -1,0 +1,67 @@
+---
+title: "Problem Section 5"
+subtitle:  "Binomial distribution"
+graphics: yes
+output: 
+        pdf_document
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+#use this code chunk to set global options
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+    - Identify whether the conditions for a binomial experiment are satisfied.
+     
+    - Calculate binomial probabilities
+   
+    - Calculate expected value
+  
+    - Back up and support work with relevant explanations
+
+
+
+\end{shaded}
+
+* * *
+
+### Exercises 
+
+1. Consider the following random variables. Which ones are binomial? Explain your answer.
+
+a. $X$ is the number of "good" rolls when a die is rolled four times. We call a roll "good" if the number rolled is greater than the roll number. So the first roll is good if it is a 2 or higher. The fourth roll is good if it is a 5 or a 6. 
+
+b. $X$ is the number of tosses for the first head to appear when tossing a coin. You may assume repeated tosses are made in identical fashion 
+
+2. A multiple choice test has 20 questions, each with four answers one of which is correct. Suppose a student randomly guesses the answer to each question. Let the random variable $X$ denote the number of questions they guess correctly. 
+  
+a. What is the distribution of $X$? State the name of the distribution and also the values of its parameters. Be sure to state (in context) any assumptions you need to make.
+  
+b. Give an expression for the probability that they will correctly guess 12 questions. In a code chunk, write the R function for calculating this probability and save it to a variable and print. You can additionally report your answer (rounded to four digits) using inline code.
+  
+c. How many questions should they *expect* to guess correctly? Write the formula and and report the answer. \footnote{Note: this is a simple enough calculation that you may not even need R to do the multiplication for you. In cases when you need a calculator, you should always do the work in a code chunk first. You can always save the value to a variable, and then report the value using inline code}
+
+    
+  
+d. Give an expression for the probability that they will correctly guess more questions than expected. In a code chunk, write the R function for calculating this probability, save it to a variable and print the value. You can additionally report its value using inline code.  
+
+3. The playoff series in the National Hockey league now are all best of seven games, but the early rounds used to be best of three. If a team thinks that on any given day they have probability 0.55 to beat their first round opponent, should they prefer the three game or the seven game format?
+
+
+
+4. A lottery randomly picks a 3-digit number from 000 to 999 (so there are 1,000 possible numbers). You pick your lucky number and bet $1. If your number wins, you get $700 (including your $1 bet back). If your number loses, you get nothing. What is your expected winning (average gain or loss) from playing once?
+
