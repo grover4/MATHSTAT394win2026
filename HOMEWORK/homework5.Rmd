@@ -1,0 +1,106 @@
+---
+title: "Homework 5"
+subtitle: "The Binomial Random Variable/Mean and variance"
+author: "WRITE YOUR NAME HERE"
+date: "`r Sys.Date()`"
+output: 
+  pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+
+\onehalfspacing
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE) #do not change this option
+library(tidyverse)
+
+```
+
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Feb 25 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. Any work submitted past this period is considered late.  
+
+- Please answer the following questions in the order in which they are posed. 
+
+- Don't forget to (i) make a local copy this document for your work and to (ii) knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. 
+
+* * *
+
+
+### Exercises 
+
+
+
+1. (Therapy) In the past, a person afflicted with a certain neurological disease had a 30% chance of complete recovery. A radically different therapy has been tested on 10 patients, 7 of whom recovered. Let the random variable $X$ denote the number (in a sample of 10) who recover using the new therapy. 
+
+a. What is the distribution of $X$ assuming the new therapy is no better than the old one? Be sure to state the name of the distribution and also the values of its parameters. Also state any *assumptions* you are making.
+
+<!--- Please note: use the scale_x_continuous layer to put down ticks at the observed values. If you need help, look at the last slide in the binomial slidedeck --->
+
+b. Make a probability histogram of the distribution in part a. Add a vertical line at $x=7$ to the histogram using the `geom_vline` layer.  (*Hint* Type `? geom_vline` in the Console for help.)
+
+c. The probability $P(X \geq 7)$ quantifies how unusually large an observed value of 7 is under the presumed distribution. Calculate and show this number in a code chunk using `dbinom` as well as by using `pbinom`. 
+
+d. Based on your calculation from part c, do you believe the presumption that the new therapy is no better than the old one? Why or why not?
+
+
+2. (Pooled Testing) Suppose that fifty people are to be given a blood test to see who has a certain disease. The obvious laboratory procedure is to examine each person’s blood individually, meaning that fifty tests would eventually be run. An alternative strategy is to divide each person’s blood sample into two parts (say), A and B. All of the A’s would then be mixed together and treated as one sample. If that “pooled” sample proved to be negative for the disease, all fifty individuals must necessarily be free of the infection, and no further testing would need to be done. If the pooled sample gave a positive reading, of course, all fifty blood samples would have to be analyzed separately.
+
+   Let the random variable $X$ denote the number of tests which will need to be performed. Also let $\pi$ denote the probability that a randomly selected person is infected with the disease.
+
+<!--- Hint for 2a: you either conduct 1 test or 51 tests. Think about why. --->
+
+a. Write the PMF of $X$ in a tabular format. You may assume independence of outcomes among people. 
+
+    \begin{table}[h]
+    \centering
+    \caption{PMF of $X$: number of tests}
+    \begin{tabular}{|c|c|c|} \hline
+    $x$ &  &  \\ \hline
+    $f(x)$ & &  \\ \hline
+    \end{tabular}
+    \end{table}
+    
+
+b. Find $E\left[X \right]$. Show your steps beginning with the definition of an expected value.
+
+<!--- Hint for 2c: Use the `geom_function` layer as we did to graph the variance of a Bernoulli random variable on page 18 from the chapter 7.2 slide deck--->
+
+c. Make a plot of $E\left[X \right]$ versus $\pi$. Show your code and a properly labeled plot.  
+
+<!--- Note for 2d: "In context" means using the context of the problem --->
+
+d. Does the graph from part c make sense intuitively? Explain briefly in context. 
+
+
+3. (Bernoulli) In this part, you will find the standard deviation of $X$ from problem 2 by first converting it to a 0/1 variable.
+
+<!--- Hint for 3: Look at the key for problem 2 from section in Week 6. You may ask for clarifications on that question if you need help with this problem.  --->
+
+
+a. Let $Y = a X + b$ be a linear transformation of $X$ with $a$ and $b$ representing numbers. What values of $a$ and $b$ would result in $Y$ taking the values 0 and 1? 
+
+b. What is $Var(Y)$? Cite any result or example you are using to answer this.
+
+c. Now use your work from parts a and b to find $Var(X)$. Be sure to show your steps and cite any results you are using. 
+
+d. Make a plot of $SD\left[X\right]$ versus $\pi$ and comment on whether the pattern makes sense intuitively. Show your code and a properly labeled plot. 
+
+
+
+4. (Chebychev) Suppose $X \sim Binom(n, \frac{1}{2})$. 
+
+a. What is the mean $\mu$ and standard deviation $\sigma$ of $X$? Just cite results and use them.
+   
+b. Use Chebyshev's inequality to find the smallest $n$ for
+   $$P\left( |X -\frac{n}{2}| < \frac{0.1 \times n}{2} \right)$$
+    to be at least 90%. Be sure to show your steps, justify your work, do any calculations that you perform in a code chunk and show answers.
