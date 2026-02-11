@@ -128,4 +128,4 @@ c. Find $P(2.5 < X \leq (n-1)+\frac{1}{2})$. Show your steps using the CDF $F(x)
 
 d. Define the random variable $Y = \frac{1}{X}$. Derive the PMF of $Y$. Be sure to back up your work.
 
-    Hint: What values does $Y$ take? With what probabilities?
+  
