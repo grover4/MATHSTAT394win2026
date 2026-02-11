@@ -123,7 +123,7 @@ b. Using  value of $k$ you found in part a, complete the  equation below to show
 
 c. Find $P(2.5 < X \leq (n-1)+\frac{1}{2})$. Show your steps using the CDF $F(x)$ rather than summing the PMF.
 
-<!--- Hint for 4d: First state the possible values of $Y$. Then take one value as an example, say $\frac{1}{2}$ and find $P(Y = 1/2)$ by noting that the event $Y = 1/2 <=> X = 2$. This should help you find the probability for $ Y = 1/2$. Then generalize to arbitrary value $y$.
+<!--- Hint for 4d: First state the possible values of $Y$. Then take one value as an example, say $\frac{1}{2}$ and find $P(Y = 1/2)$ by noting that the event $Y = 1/2 <=> X = 2$. This should help you find the probability for $ Y = 1/2$. Then generalize to arbitrary value $y$.--->
 
 
 d. Define the random variable $Y = \frac{1}{X}$. Derive the PMF of $Y$. Be sure to back up your work.
