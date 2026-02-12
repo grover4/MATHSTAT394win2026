@@ -1,0 +1,76 @@
+---
+title: "Problem Section 6"
+subtitle:  "Expected Values and Variance"
+graphics: yes
+output: 
+      pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+```
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+   - Calculate expected value and variance using the PMF
+     
+   - Use Chebychev's inequality to make probability statements
+  
+   - Back up and support work with relevant explanations
+
+ 
+
+\end{shaded}
+
+
+* * *
+
+### Exercises 
+
+1. Weird Wally offers you the following choice. You may have a flat amount of $\frac{1}{3.5}$ dollars or you may roll a fair die and he will give you $\frac{1}{X}$ dollars where $X$ is the value on the roll. 
+The PMF of $X$ is shown in the table below.
+
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{c|c|c|c|c|c|c} \hline
+    $x$ & 1& 2 & 3 &4 & 5& 6 \\ \hline
+    $f(x)$& $\frac{1}{6}$ & $\frac{1}{6}$ & $\frac{1}{6}$ &$\frac{1}{6}$ &$\frac{1}{6}$     &$\frac{1}{6}$ \\ \hline
+    \end{tabular}
+    \end{table}
+
+    Which is the better deal? Calculate $E\left[ \frac{1}{X} \right]$ to decide.  
+
+2. 
+
+a. Suppose a random variable $X$ has PMF as shown below. Find $E\left[X \right]$. Also calculate $SD\left[X \right]$.
+
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{|c|c|c|} \hline
+      $x$ & -\$5 & \$170 \\ \hline 
+      $f(x)$ & 37/38  & 1/38  \\ \hline
+    \end{tabular}
+    \end{table}
+
+
+b. If $X$ denotes a temperature of a randomly selected day recorded in degrees Fahrenheit, then $Y = \frac{5}{9} X - \frac{160}{9}$ is the corresponding temperature in degrees Celsius. If the standard deviation for $X$ is 15.7$^{\circ} F$, what is the standard deviation of $Y$?
+
+    
+3. Suppose $X$ is a random variable with mean and variance both equal to 20. What can be said about $P( 0 <  X < 40)$?
+
+    *Hint*: Chebychev's inequality says that 
+    $$P(|X - 20| \geq k \sqrt{20} ) \leq \frac{1}{k^2}.$$ 
+    What would you choose for $k$ here so you can say something about $P(0 < X < 40)$?
+   
