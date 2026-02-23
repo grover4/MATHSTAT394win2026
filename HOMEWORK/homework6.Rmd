@@ -1,0 +1,150 @@
+---
+title: "Homework 6"
+subtitle: "Geometric/Poisson"
+author: "WRITE YOUR NAME HERE"
+output: 
+  pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+\onehalfspacing
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+#R packages
+library(tidyverse)  
+
+```
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Mar 4 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. Any work submitted past this period is considered late.  
+
+- Please answer the following questions in the order in which they are posed. \textbf{Be sure to support your work and show your steps. All calculations must be done within your document and shown with the answer printed}
+
+- Don't forget to (i) make a local copy this document for your work and to (ii) knit the document frequently to make sure there are no compilation errors. 
+
+- When you are done, download the PDF file as instructed in section and submit it in Gradescope. \textbf{Do not forget to tag your answers to every sub-part of every question. We will take off 10\% for every part that is not tagged}
+
+- \textbf{Please read the acceptable policies for this class in CANVAS. In particular, you are NOT ALLOWED to consult external sources - AI, tutors, tutoring sites, internet - to complete any part of this work. Do not use notation or definitions or results we have not covered in this class. We will deduct points for this. }
+
+* * *
+
+
+### Exercises 
+
+1. (Blood type) In the US population, 85% have an agglutinating factor in their blood classifying them as Rh positive, while 15% lack the factor and are Rh negative. A medical researcher wants to analyze blood from a newborn Rh negative infant, so she examines the blood types of successive newborn infants until she finds an Rh negative infant. 
+
+
+a. Let the random variable $X$ denote the number of Rh positive infants she needs to type before she finds the first negative case. Write the distribution of $X$. Be sure to state the values of any parameters. List any assumptions you need to make to answer this question.
+
+b. How many Rh positive infants should she expect to type before she finds her first Rh negative? State the formula you are using, then calculate and print it in a code chunk  and then report your answer in a complete sentence in context.
+
+c. What is the probability that she will type fewer Rh positive infants than expected? Give the mathematical (closed form) expression for this probability here, do not calculate it yet. 
+
+d. Calculate the probability from part c using your mathematical expression and also a built in R function for working with the distribution from part a. Be sure to echo your code chunk and report your answers.  
+   
+2. (Memoryless) Let $X$ be a geometric random variable with probability $\pi$. That is,
+$$f(x) = \pi \cdot (1 - \pi)^{x}, \ \ x = 0, 1, 2 \dots$$ 
+
+a. Show that for all non-negative integers  $x$ and $k$,
+$$P(X \geq k + x | X \geq k) = P(X \geq x).$$ Be sure to show your steps.
+
+b. Because of the result in part a, we say that the geometric distribution is a \emph{memoryless} distribution. Explain how this is an appropriate name for this property.
+
+3. (Insecticide) A large number of insects are expected to be attracted to a variety of rose plant. A commercial insecticide is advertised as being 99% effective. Suppose 2,000 insects infest a rose garden where the insecticide has been applied and let $X$ denote the number of surviving insects.
+  
+a. What probability distribution provides the most accurate model for this experiment? Be sure to give the reasons for why.
+
+b. Calculate the probability that fewer than 10 insects survive, using the model from  part a. Be sure to show your code and output.
+
+    ```{r 3b}
+    
+    
+    ```
+
+c. What other probability distribution might be more computationally convenient and would provide a good approximation? Be sure to state the name and values of any parameters and also explain your reasoning.
+
+d. Calculate  an approximation to the probability from part b using the model from part. Be sure to show your code and output.
+
+
+    ```{r 3d}
+    
+    
+    ```
+  
+
+
+4. (Apple trees) From each of 6 trees in an apple orchard, 25 leaves are selected. Each of the $n = 150$ leaves are then inspected and the number of adult mites found on each are counted. The following table summarises the data. For example, 70 leaves had 0 mites, 38 leaves had 1 mite and so on.
+
+    \begin{table}[h]
+    \centering
+    \begin{tabular}{c|ccccccccc} \hline
+    $x$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 & 7 & 8+ \\
+    count & 70 & 38 & 17 & 10 & 9 & 3 & 2 & 1 & 0 \\ \hline
+    \end{tabular}
+    \end{table}
+
+
+a. Using R as a calculator, write code to find $\bar{x}$, the mean number of adult mites found. Be sure to show your code and the output!
+
+    ```{r 4a}
+
+
+    ```
+
+
+<!--- Hint for 4b:   For help with the code for side-by-side plots, look from slide 11 in the slidedeck Chapter 8.1. You will obviously need to modify this code for this example.  Be sure to show the code and the output, don't forget labels!--->
+
+b. Let $X$ denote the number of mites on a randomly selected leaf. In this question, you will consider two possible models for $X$:
+
+ - $X \sim Pois(lambda = \bar{x})$ 
+    
+ - $X \sim Geom( prob = \frac{1}{1 + \bar{x}} )$
+ 
+    where $\bar{x}$ is the number you calculated from part a. for the mean. 
+  
+    Write code in the code chunk below to make side-by-side plots of the probability histograms for each distribution. Just visually, which model fits these data better? Explain briefly. 
+
+
+    ```{r 4b}
+    #add patchwork package in setup code chunk, NOT HERE!
+
+
+    ```
+    
+
+c. In this part you will calculate a numerical measure of the goodness of fit of each model for these data. A popular metric for this purpose is 
+$$\chi^2 = \sum\limits_{i} \frac{(f_i - n p_i)^2}{n p_i}$$
+where $f_i$ is the observed frequency of the value $x_i$, and $p_i = P(X = x_i)$ is probability of observing value $x_i$ under the specified model. Thus, $n p_i$ is the expected (predicted) frequency for value $x_i$. Large values of $\chi^2$ suggest poorer fit.
+
+
+    i. Fill in the blanks in the code chunk below to display the expected frequencies under the Poisson and geometric models. Remove the `eval = FALSE` option after you fill in the blanks.
+
+
+    ```{r 4cparti, eval = FALSE}
+    
+    goodness_of_fit <- tibble(
+         x = 0:7,
+         obs_freq =  ___,   
+         exp_freq_pois = ___ ,
+         exp_freq_geom = ___
+         
+    )
+    
+    goodness_of_fit
+    
+    ``` 
+    
+
+    <!--- For 4c (ii) - please do not do anything fancy, it is fine to find the answers by adding the relevant terms using the output from the previous part. --->
+
+    ii. Using R as a calculator, find the value of $\chi^2$ for the geometric model and also the Poisson model. Which model fits the data better? Be sure to show your code and output.
+
+     
+ 
