@@ -1,0 +1,74 @@
+---
+title: "Problem Section 7"
+subtitle:  "Probability Density Function"
+graphics: yes
+output: 
+        pdf_document
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fastR2)
+```
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+     - Find probabilities using a PDF.
+   
+     - Derive the PDF from a CDF
+   
+     - Calculate probabilities in the uniform and exponential distributions
+  
+     - Back up and support work with relevant explanations
+
+ 
+\end{shaded}
+
+
+* * *
+
+### Exercises 
+
+1. Semester grades (expressed as a fraction of points) in a Physics for Poets class are decribed fairly well by the PDF
+$$f(x) =  6x \cdot (1-x), \qquad 0 \leq x < 1.$$
+Anyone earning less than 60% fails. Five housemates are among the students enrolled in the class. Suppose the random variable $X$ denotes the number (out of the 5 housemates) who fail the class.
+
+a. What is the distribution of $X$? State the name as well as the values for the parameters. (What assumption are you making? Do you think it is valid here?)
+b. The number of housemates who fail will be `___` give or take `___`. Fill in the first blank with $E\left[X \right]$ and the second blank with the $SD\left[X \right]$.
+
+2. Suppose $X$ is a random variable with CDF
+\begin{align*}
+F(x) &= \left\{ \begin{array}{cc}
+                      0 & x < 0 \\
+                      1 - e^{-x^{3/2}} & x \geq 0
+                  \end{array}
+                  \right.
+\end{align*}
+
+a. Determine $f(x)$, the PDF of $X$.
+
+b. Find $P(a \leq X < b)$ for $0 \leq a < b$ using the CDF $F(x)$ and also by integrating under the PDF $f(x)$.
+
+3. Suppose $X$ is uniformly distributed over $[0,1)$. That is
+$$f(x) = 1 \ \ \ 0 \leq x < 1.$$ 
+    Show that $$P(-\ln(X) \leq 5) = 1 - e^{-5}$$ 
+   where $\ln(X)$ denotes denotes the natural logarithm of $X$.
+   
+   
+4. The length of time (in minutes), $Y$, that a customer spends in line at an ATM is described by the exponential PDF $f_Y(y) = 0.2 e^{-0.2y} \quad y \geq 0$.
+
+a. Find the probability that the customer will wait more than 10 minutes
+
+b. What is the median wait time? Find the 50th percentile of the wait time distribution.
+
+c. Suppose the customer will leave if the wait is more than ten minutes. Assume that the customer goes to the bank five times next month. Let the random variable
+$X$ be the number of times the customer leaves without being served. Find $P(X = 1)$.
