@@ -1,0 +1,222 @@
+---
+title: "Problem Section 7"
+subtitle:  "Probability Density Function"
+graphics: yes
+output: 
+        pdf_document
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{framed}\definecolor{shadecolor}{rgb}{0.949,0.949,0.949}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(fastR2)
+```
+
+* * * 
+\begin{shaded}
+
+\textbf{Learning Outcomes}
+
+The problems are designed to build conceptual understanding and problem-solving skills. The emphasis is on learning to find, evaluate and build confidence.
+The specific tasks include: 
+
+     - Find probabilities using a PDF.
+   
+     - Derive the PDF from a CDF
+   
+     - Calculate probabilities in the uniform and exponential distributions
+  
+     - Back up and support work with relevant explanations
+
+ 
+\end{shaded}
+
+
+* * *
+
+### Exercises 
+
+1. Semester grades (expressed as a fraction of points) in a Physics for Poets class are decribed fairly well by the PDF
+$$f(x) =  6x \cdot (1-x), \qquad 0 \leq x < 1.$$
+Anyone earning less than 60% fails. Five housemates are among the students enrolled in the class. Suppose the random variable $X$ denotes the number (out of the 5 housemates) who fail the class.
+
+a. What is the distribution of $X$? State the name as well as the values for the parameters. (What assumption are you making? Do you think it is valid here?)
+
+    $X \sim Binom(n = 5, prob = \pi)$ where
+    \begin{align*}
+    \pi &= P(X \leq 0.6) \\
+    &= \int_{0}^{0.6} f(x) dx, \\
+    &= \int_{0}^{0.6} 6x(1-x)dx\\
+    &= \left. \frac{6 x^2}{2} - \frac{6 x^3}{3} \right\rvert_{0}^{0.6}\\
+    &= \frac{6 \times .6^2}{2} - \frac{6 \times .6^3}{3}
+    \end{align*}
+    
+    This is calculated and reported below.
+    
+    ```{r}
+    prob_fail <- 6*0.6^2/2 - 6*0.6^3/3
+    prob_fail
+    
+    ```
+
+    We need to assume that the housemates are independent of each other. This may be unreasonable to assume if they are friends and have similar study habits/work ethic.
+    
+b. The number of housemates who fail will be `___` give or take `___`. Fill in the first blank with $E\left[X \right]$ and the second blank with the $SD\left[X \right]$.
+
+    The mean of a binomial random variable is $$E\left[X \right] = n \times \pi = `r 5*prob_fail`.$$
+   
+   The standard deviation of a binomial random variable is $$SD\left[X \right] = \sqrt{n \times \pi \times (1-\pi)} = `r sqrt( 5*prob_fail*(1-prob_fail))`.$$ 
+   
+
+2. Suppose $X$ is a random variable with CDF
+\begin{align*}
+F(x) &= \left\{ \begin{array}{cc}
+                      0 & x < 0 \\
+                      1 - e^{-x^{3/2}} & x \geq 0
+                  \end{array}
+                  \right.
+\end{align*}
+
+a. Determine $f(x)$, the PDF of $X$.
+    
+    By the Fundamental Theorem of Calculus, we have
+    $$f(x)  = \frac{d}{dx} F(x).$$
+    
+    For $x < 0$, clearly $f(x) = 0$. When $x > 0$, we can use the chain rule of differentiation to get
+    \begin{align*}
+    f(x) &= -e^{-x^{3/2}} \times \frac{d}{dx} -x^{3/2}, \\
+    &= e^{-x^{3/2}} \times \frac{3}{2} x^{3/2 - 1}  \\
+    &= \frac{3}{2} \sqrt{x} \cdot e^{-x^{3/2}}
+    \end{align*}
+    
+    When $x = 0$, we can see that the left hand and right hand derivatives are both 0, and therefore we can write
+    $$f(x) = \frac{3}{2} \sqrt{x} \cdot e^{-x^{3/2}}, \qquad x \geq 0.$$
+
+b. Find $P(a \leq X < b)$ for $0 \leq a < b$ using the CDF $F(x)$ and also by integrating under the PDF $f(x)$.
+
+    \textbf{Using the CDF:} For $0 \leq a < b$, we have
+    \begin{align*}
+     P(a \leq X < b) &= P(X < b) - P(X < a) \\
+                     &= P(X \leq b) - P(X \leq a) \tag{continuous} \\
+                     &= F(b)-F(a) \tag{definition of CDF} \\
+                     &= = [1-e^{-b^{3/2}}]-[1-e^{-a^{3/2}}]\\
+                     &= e^{-a^{3/2}} - e^{-b^{3/2}}
+    \end{align*}
+                     
+    \textbf{Using the PDF}
+   
+   \begin{align*}
+   P(a\leq X<b) &= \int_a^b f(x)\,dx, \\
+   &= \int_a^b \frac{3}{2}\sqrt x e^{-x^{3/2}} dx
+   \end{align*}
+   
+   A priori, we already know how to calculate this integral, but as a calculus exercise, let us pretend as if we did not. 
+   We observe that
+  $$
+  \frac{d}{dx}e^{-x^{3/2}} = -\frac{3}{2}e^{-x^{3/2}}\sqrt x\,.
+  $$
+  Thus,
+  $$
+  P(a\leq X < b) = \int_a^b \frac{3}{2}\sqrt x e^{-x^{3/2}}\,dx = -\int_a^b \frac{d}{dx}e^{-x^{3/2}}\,dx = e^{-a^{3/2}}-e^{-b^{3/2}}\,.
+  $$
+ 
+
+3. Suppose $X$ is uniformly distributed over $[0,1)$. That is
+$$f(x) = 1 \ \ \ 0 \leq x < 1.$$ 
+    Show that $$P(-\ln(X) \leq 5) = 1 - e^{-5}$$ 
+   where $\ln(X)$ denotes denotes the natural logarithm of $X$.
+   
+   \begin{align*}
+   P(-\ln(X) \leq 5) &= P(X \geq e^{-5}), \\
+   &= 1 - P(X < e^{-5}), \\
+   &= 1 - \int\limits_{-\infty}^{e^{-5}} f(x) \:dx, \\
+   &= 1 - \int\limits_{0}^{e^{-5}} dx, \\
+   &= 1 - \left. x \right\rvert_{0}^{e^{-5}}
+   &= 1 - e^{-5}
+   \end{align*}
+   
+4. The length of time (in minutes), $Y$, that a customer spends in line at an ATM is described by the exponential PDF $f_Y(y) = 0.2 e^{-0.2y} \quad y \geq 0$.
+
+a. Find the probability that the customer will wait more than 10 minutes
+
+   \begin{align*}
+  P(Y > 10) &= \int_{10}^{\infty} f(y) dy = \int_{10}^{\infty} 0.2 e^{-0.2 y} dy \\
+            &= \left. -e^{-0.2y} \right\rvert_{10}^{\infty}  = e^{-2}.
+    \end{align*}
+
+b. What is the median wait time? Find the 50th percentile of the wait time distribution.
+
+    We want to find $q$ so that $P(Y \leq q) = 0.5$. 
+\begin{align*}
+P(Y \leq q) &= \int\limits_{0}^{q} f_Y(y) dy = \int\limits_{0}^{q} 0.2 e^{-0.2 y} dy \\
+&= \left( \left. -e^{-0.2y} \right\rvert_{0}^{q} \right) = (1 - e^{-0.2q})
+\end{align*}
+Therefore setting $1 - e^{-0.2q} = 0.5$ we get $q = -\frac{1}{0.2} \ln(0.5)$
+
+c. Suppose the customer will leave if the wait is more than ten minutes. Assume that the customer goes to the bank five times next month. Let the random variable
+$X$ be the number of times the customer leaves without being served. Find $P(X = 1)$.
+
+    ```{r echo = TRUE}
+    -log(0.5)/0.2
+    ```
+
+
+    Assuming that the wait times on separate visits are independent, we have $X \sim Binom(5, \pi)$ where $\pi = P(Y > 10)$. From part a, we know that $\pi = exp(-2)$. Therefore,
+$$P(X = 1) = \binom{5}{1} e^{-2}  (1 - e^{-2})^{4}$$
+}
+
+    ```{r echo = T}
+    dbinom(x = 1, size = 5, prob = exp(-2))
+
+    ```
+
+
+<!---
+   
+4. Among the most famous of all meteor showers are the Perseids, which occur each year in early August. In some areas the frequency of visible Perseids can be as high as forty per hour. Assume that sightings occur according to a Poisson process.
+
+a. Let $X(t)$ denote the number of sightings in t hours. Then we are given $X(t) \sim Pois(40t)$.  Calculate the probability using the Poisson model that an observer who has just seen a meteor will have to wait at least five minutes before seeing another one.
+
+   The PMF of $X(t) \sim Pois(40t)$ is given by
+    $$P(X(t) = x) = e^{-40t} \times \frac{(40t)^{x}}{x!}, \ \ \ x=0,1,2,$$
+    
+    Since 5 minutes is equal to $\frac{1}{12}$ of an hour, we can say that
+    $$X(\frac{1}{12}) \sim Pois(40 \times \frac{1}{12})$$
+    and
+    we are interested in
+    calculating $P\left( X(\frac{1}{12}) = 0 \right)$
+    
+    Plugging into the PMF gives $e^{-40/12}$. This is calculated manually and also using the function `dpois`.
+    
+    ```{r}
+    exp(-40/12)
+    
+    dpois(0, lambda = 40/12)
+    
+    ```
+    
+b. Let the random variable $Y$ denote the length of time (in hours) between consecutive sightings of the meteor. 
+
+    i. What is the distribution of $Y$? State the name and also show its PDF.
+    
+    $Y \sim Exp(40)$. The PDF of $Y$ is
+    $$f(y) = 40 e^{-40\:y}, \ \ \ y \geq 0.$$
+
+    ii. Repeat the calculation from part a but using the distribution of $Y$.
+    
+    Here we want the probability that $Y > \frac{1}{12}$. Since the CDF of $Y$ is
+    $$F(y) = P(Y \leq y) = 1 - e^{-40y}$$
+    we can say that 
+    $$P(Y > \frac{1}{12}) = 1 - F(1/12) = e^{-40/12}$$
+    
+    This is calculated below.
+    
+    ```{r}
+    1 - pexp(q = 1/12, rate = 40)
+    
+    ```
+    
+    
+--->
