@@ -1,0 +1,87 @@
+---
+title: "Homework 7"
+subtitle: "Continuous Random Variables"
+author: "WRITE YOUR NAME HERE"
+output: 
+  pdf_document:
+        highlight: null
+        pandoc_args: ["--syntax-highlighting=tango"]
+header-includes:
+    - \usepackage{amsmath, amssymb}
+    - \usepackage{setspace} 
+---
+\onehalfspacing
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+
+```
+
+* * * 
+
+### Instructions
+
+- This homework is due in Gradescope on Wednesday Mar 11 by midnight PST. There is a 15 minute grace period and submissions made during this time will not be marked as late. \textbf{There are no late days on this homework and work submitted after this deadline will not be graded}.  
+
+- Please answer the following questions in the order in which they are posed. - \textbf{In the interest of saving you some time, you may handwrite your answers (and R code/output) and upload it in Gradescope. Don't forget to tag pages. Please be extra careful to write neatly and upload a clear image that is easy to view and read. If we cannot read your work, we will be unable to grade your homework.}
+
+- \textbf{Please read the acceptable policies for this class in CANVAS. In particular, you are NOT ALLOWED to consult external sources - AI, tutors, tutoring sites, internet - to complete any part of this work. Do not use notation or definitions or results we have not covered in this class. We will deduct points for this. }
+
+* * *
+
+
+### Exercises 
+
+1. (Burnout) In a large factory building, where the fluorescent lights are kept on day and night, the lights burn out according to a Poisson process at a daily rate of $\lambda = 6$. (Assume that lights are replaced as soon as they burn out for simplicity. Also a day refers to a 24 hour period.)
+
+a. Let $X(t)$ denote the number of burnouts in an interval of $t$ days. What is the distribution of $X(t)$? 
+
+b. Find the probability that there are more than two burnouts between noon and 1 PM today. (Be sure to state what probability you are calculating and then do your calculation using R in a code chunk.)
+
+c. On a certain day, you count the number of burnouts during a 12 hour period between 8 AM and 8 PM. 
+
+    i. How many burnouts should you expect? With what standard deviation? (Please give your answers in a complete sentence, don't just write two numbers)
+
+    ii. What does Chebychev's inequality say about the probability there will be between 1 and 5 burnouts (both exclusive) during this period?  Be sure to show your work/code/answer.
+
+        Hint: we want $P(1 < X(1/2) < 5)$. Subtract the mean 3 and rewrite it in the form of Chebychev.
+
+    iii. Use R to calculate the probability from part (ii) with the exact distribution of the number of burnouts for this time period. 
+
+d. Find the probability that the next two burnouts will be more than 3 hours apart. Do the calculation using the Poisson and also the exponential waiting time distribution. Be sure to clearly state random variables and their distributions, what you are calculating and then you may do the actual calculation in R. Be sure to show code and output. 
+
+2. Suppose $Y \sim Unif(-3,3)$. 
+
+a. Write the PDF of $Y$. (Don't forget the range)
+
+b. Find the probability that the roots of the quadratic equation in $x$
+$$x^2 + x \cdot Y + (Y + 1)$$ are real. 
+
+    Hint: The roots of the equation $ax^2 + b x + c=0$ are real if the discriminant $b^2-4ac \geq 0$.
+
+
+3. Suppose $Y \sim Exp(\lambda)$, that is it has PDF
+$$f(y)  = \lambda e^{-\lambda y} \quad y \geq 0$$
+
+a. Find $F(y)$, the CDF of $Y$. Write your answer in the aligned equation environment below and show some work in the space below.
+
+    \begin{align*}
+    F(y) &= \left\{ \begin{array}{cc} 
+             ??? & y < 0 \\
+             ??? & 0 \leq y
+             \end{array} \right.
+      \end{align*}
+
+b. Use your result from part a to prove that the exponential random variable is \emph{memoryless}. In other words, show that for any real numbers $y,k > 0$
+$$P(Y \geq (k+y ) | Y \geq y) = P(Y \geq k)$$ 
+
+
+4. A continuous distribution which has applications in physics is the \emph{Rayleigh distribution}, where the PDF is given by
+$$f(x) = \frac{x}{a^2} e^{-\frac{x^2}{2a^2}} \quad x \geq 0$$
+and $a > 0$ is some number.
+
+    Find the median - 50th percentile - of this distribution. Your answer will be in terms of $a$. 
+  
+    Note: Begin your answer by first stating the equation which defines the 50th percentile. Then solve for it
+    
